@@ -31,3 +31,17 @@ body {
     text-wrap: balance;
   }
 }
+ul li {
+  list-style-type: disc;
+
+  ul li {
+    margin-left: 2rem;
+  }
+}
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+h2 {
+  font-size: 1.4rem;
+}
