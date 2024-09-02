@@ -3,7 +3,9 @@ import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   try {
-    const result = await sql`CREATE TABLE users (
+    //DROP TABLE IF EXISTS users`;
+    const result = await sql`
+    CREATE TABLE users (
       id BIGSERIAL PRIMARY KEY, 
       name VARCHAR(255) 
     );`;
