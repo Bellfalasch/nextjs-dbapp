@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { sql } from "@vercel/postgres";
+import Link from "next/link";
 
-async function Cart({
+async function Events({
   params,
 }: {
   params: { user: string };
@@ -22,6 +23,16 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1>X-mas Beer App</h1>
+      <h2>Done so far</h2>
+      <ul>
+        <li>
+          <Link href="/beers">List _all_ beers</Link>
+        </li>
+        <li>
+          <Link href="/beers/add">Add one beer</Link>
+        </li>
+      </ul>
+
       <h2>User journey</h2>
       <ul>
         <li>Login (using auth0)</li>
@@ -104,7 +115,7 @@ export default function Home() {
           very complicated.
         </li>
       </ul>
-      <Cart params={{ user: "test" }} />
+      <Events params={{ user: "test" }} />
     </main>
   );
 }

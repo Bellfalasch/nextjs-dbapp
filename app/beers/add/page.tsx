@@ -4,21 +4,23 @@ import createItem from "@/db/beers/add-one";
 import React from "react";
 
 const addBeer = async (formData: FormData) => {
-  "use server";
+  "use server"; // This runs on the server, so console.logs here and deeper will not be in the browser console ;P
 
   const thing = await createItem(
     formData.get("name") as string,
     formData.get("description") as string
   );
 
-  //revalidatePath("/things");
-  //redirect(`/things`);
+  console.log("Added thing", thing);
+  
+  revalidatePath("/beers/add");
+  redirect(`/beers/add`);
 };
 
 export default function AddBeer() {
   return (
     <form action={addBeer} className="flex flex-col place-items-baseline">
-      <h1 className="text-xl mb-2">Add a New Thing</h1>
+      <h1 className="text-xl mb-2">Add a New Beer</h1>
       <label>
         Name:
         <input name="name" type="text" required className="border" />
@@ -32,7 +34,7 @@ export default function AddBeer() {
           className="border"
         />
       </label>
-      <button type="submit">Add thing</button>
+      <button type="submit">Add beer</button>
     </form>
   );
 }

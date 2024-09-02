@@ -1,26 +1,27 @@
-import { FormEvent } from "react";
+import { sql } from "@vercel/postgres";
 
-async function onSubmit(event: FormEvent<HTMLFormElement>) {
-  event.preventDefault();
+async function Beers({
+  params,
+}: {
+  params: { user: string };
+}): Promise<JSX.Element> {
+  const { rows } = await sql`SELECT * FROM beers ORDER BY id`; //WHERE user_id = ${params.user}`;
 
-  const formData = new FormData(event.currentTarget);
-  const response = await fetch("/api/beers", {
-    method: "POST",
-    body: formData,
-  });
-
-  // Handle response if necessary
-  const data = await response.json();
-  // ...
-}
-
-export default function Page() {
   return (
-    <form onSubmit={onSubmit}>
-        <h1>Add a beer</h1>
-        <input type="text" name="name" required />
-        <input type="text" name="description" required />
-        <button type="submit">Add beer</button>
-    </form>
+    <div>
+      {rows.map((row) => (
+        <div key={row.id}>
+          {row.id} - {row.name} - {row.description}
+        </div>
+      ))}
+    </div>
+  );
+}
+export default function Home() {
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <h1>Available beers</h1>
+        <Beers params={{ user: "test" }} />
+    </main>
   );
 }

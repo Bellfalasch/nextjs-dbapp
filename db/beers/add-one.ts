@@ -12,6 +12,7 @@ const addOne = async (
     `;
 
     // Return the newly inserted thing
+    console.log(result.rows[0]);
     return result.rows[0] as Beer;
   } catch (e) {
     console.error(e);
