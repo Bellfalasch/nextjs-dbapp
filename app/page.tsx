@@ -1,30 +1,14 @@
-import Image from "next/image";
-import { sql } from "@vercel/postgres";
 import Link from "next/link";
 
-async function Events({
-  params,
-}: {
-  params: { user: string };
-}): Promise<JSX.Element> {
-  const { rows } = await sql`SELECT * FROM events ORDER BY id`; //WHERE user_id = ${params.user}`;
-
-  return (
-    <div>
-      {rows.map((row) => (
-        <div key={row.id}>
-          {row.id} - {row.name} - {row.description}
-        </div>
-      ))}
-    </div>
-  );
-}
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1>X-mas Beer App</h1>
       <h2>Done so far</h2>
       <ul>
+        <li>
+          <Link href="/events">List _all_ events</Link>
+        </li>
         <li>
           <Link href="/beers">List _all_ beers</Link>
         </li>
@@ -118,7 +102,6 @@ export default function Home() {
           very complicated.
         </li>
       </ul>
-      <Events params={{ user: "test" }} />
     </main>
   );
 }
