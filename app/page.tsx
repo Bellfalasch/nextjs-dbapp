@@ -19,6 +19,10 @@ export default function Home() {
           <Link href="/votes">Vote!</Link>
         </li>
       </ul>
+      <p>
+        Currently we will open &quot;add beer&quot; for everyone, the concept of events is not used, and voting is just a form you can use for any beer at any time.
+        This makes the app simpler to build, constraints are enforced by the user instead of the code.
+      </p>
 
       <h2>User journey</h2>
       <ul>
@@ -84,7 +88,7 @@ export default function Home() {
         </li>
         <li>
           Based on total votes, we should be able to fetch some stats, like
-          wirst/best for each category, total win/loss, etc.
+          worst/best for each category, total win/loss, etc.
         </li>
         <li>
           The app should handle people joining late, and people leaving early.

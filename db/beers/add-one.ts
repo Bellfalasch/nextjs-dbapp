@@ -1,11 +1,10 @@
 import { sql } from "@vercel/postgres";
 import { Beer } from "@/types";
 
-const addOne = async (
+const createBeer = async (
   name: string,
   description: string
 ): Promise<Beer | null> => {
-
   try {
     const result = await sql`
       INSERT INTO beers (name, description) VALUES (${name}, ${description}) RETURNING *
@@ -20,4 +19,4 @@ const addOne = async (
   }
 };
 
-export default addOne;
+export default createBeer;
