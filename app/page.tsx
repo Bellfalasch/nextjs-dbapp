@@ -31,6 +31,9 @@ export default function Home() {
         <li>
           <Link href="/beers/add">Add one beer</Link>
         </li>
+        <li>
+          <Link href="/votes">Vote!</Link>
+        </li>
       </ul>
 
       <h2>User journey</h2>

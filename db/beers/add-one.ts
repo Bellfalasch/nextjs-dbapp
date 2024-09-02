@@ -11,7 +11,7 @@ const addOne = async (
       INSERT INTO beers (name, description) VALUES (${name}, ${description}) RETURNING *
     `;
 
-    // Return the newly inserted thing
+    // Return the newly inserted thing (logged on the server)
     console.log(result.rows[0]);
     return result.rows[0] as Beer;
   } catch (e) {
