@@ -9,18 +9,20 @@ return (
   <table>
     <thead>
       <th>ID</th>
+      <th>Voting</th>
       <th>Name</th>
       <th>Description</th>
       <th>Votes</th>
       <th>Taste</th>
       <th>Design</th>
       <th>Bonus</th>
-      <th>-</th>
+      <th>Delete</th>
     </thead>
     <tbody>
       {rows.map((row) => (
         <tr key={row.id}>
           <td>{row.id}</td>
+          <td><button>Go vote!</button></td>
           <td>{row.name}</td>
           <td>{row.description}</td>
           <td>{row.votes}</td>
