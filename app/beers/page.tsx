@@ -1,4 +1,5 @@
 import { sql } from "@vercel/postgres";
+import DeleteBeer from "@/components/DeleteBeer";
 
 async function Beers(): Promise<JSX.Element> {
   const { rows } =
@@ -14,6 +15,7 @@ return (
       <th>Taste</th>
       <th>Design</th>
       <th>Bonus</th>
+      <th>-</th>
     </thead>
     <tbody>
       {rows.map((row) => (
@@ -31,6 +33,7 @@ return (
           <td>
             {row.bonus ? parseFloat(row.bonus.toString()).toFixed(1) : "-"}
           </td>
+          <td><DeleteBeer beerId={row.id}/></td>
         </tr>
       ))}
     </tbody>
