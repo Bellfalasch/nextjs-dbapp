@@ -8,26 +8,41 @@ const addBeer = async (formData: FormData) => {
 
   const castBeer = await createBeer(
     formData.get("name") as string,
-    formData.get("description") as string
+    formData.get("description") as string,
+    formData.get("brewery") as string,
+    formData.get("alcohol") as string,
+    formData.get("price") as string
   );
 
   console.log("Added beer", castBeer);
   
-  //revalidatePath("/beers/add");
-  //redirect(`/beers/add`);
+  revalidatePath("/beers");
+  redirect(`/beers`);
 };
 
 export default function AddBeer() {
   return (
-    <form action={addBeer} className="flex flex-col place-items-baseline">
+    <form action={addBeer}>
       <h1 className="text-xl mb-2">Add a New Beer</h1>
       <label>
-        Name:
+        Name (required):
         <input name="name" type="text" required />
       </label>
       <label>
         Description:
-        <input name="description" type="text" required />
+        <input name="description" type="text" />
+      </label>
+      <label>
+        Brewery:
+        <input name="brewery" type="text" />
+      </label>
+      <label>
+        Alcohol:
+        <input name="alcohol" type="text" />
+      </label>
+      <label>
+        Price:
+        <input name="price" type="text" />
       </label>
       <button type="submit">Add beer</button>
     </form>

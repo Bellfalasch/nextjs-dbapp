@@ -1,3 +1,11 @@
 tr:hover {
   background-color: lightblue;
 }
+label {
+  display: block;
+}
+form {
+  display: flex;
+  gap: 1rem;
+  flex-flow: column;
+}

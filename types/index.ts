@@ -2,6 +2,9 @@ export type Beer = {
   id: number;
   name: string;
   description: string;
+  brewery: string;
+  alcohol: string;
+  price: string;
 };
 
 export type Vote = {

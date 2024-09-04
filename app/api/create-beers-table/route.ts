@@ -6,7 +6,10 @@ export async function GET(request: Request) {
     const result = await sql`CREATE TABLE beers ( 
       id BIGSERIAL PRIMARY KEY, 
       name VARCHAR(255), 
-      description VARCHAR(255) 
+      description VARCHAR(255),
+      alcohol REAL,
+      brewery VARCHAR(255),
+      price INTEGER
     );`;
     return NextResponse.json({ result }, { status: 200 });
   } catch (error) {

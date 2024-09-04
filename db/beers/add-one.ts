@@ -3,11 +3,14 @@ import { Beer } from "@/types";
 
 const createBeer = async (
   name: string,
-  description: string
+  description: string,
+  brewery: string,
+  alcohol: string,
+  price: string
 ): Promise<Beer | null> => {
   try {
     const result = await sql`
-      INSERT INTO beers (name, description) VALUES (${name}, ${description}) RETURNING *
+      INSERT INTO beers (name, description, brewery, alcohol, price) VALUES (${name}, ${description}, ${brewery}, ${alcohol}, ${price}) RETURNING *
     `;
 
     // Return the newly inserted thing (logged on the server)
