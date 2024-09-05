@@ -2,9 +2,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import addVote from "@/db/votes/vote";
 import listBeers from "@/db/beers/get-all";
-import React from "react";
 import { Beer } from "@/types";
-
 
 const submitVote = async (formData: FormData) => {
     "use server"; // This runs on the server, so console.logs here and deeper will not be in the browser console ;P
@@ -20,8 +18,8 @@ const submitVote = async (formData: FormData) => {
     
     console.log("Added vote", castVote);
     
-    revalidatePath("/votes");
-    redirect(`/votes`);
+    revalidatePath("/beers");
+    redirect(`/beers`);
 };
 
 async function getAllBeers() {
@@ -29,105 +27,48 @@ async function getAllBeers() {
   return !beers ? [] : beers;
 }
 
-export default async function AddVote() {
+export default async function AddVote({ searchParams }: { searchParams: URLSearchParams }) {
   const allBeers = await getAllBeers();
+  // @ts-ignore
+  const beerId = searchParams.id;
+  const points = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6];
 
   return (
     <form action={submitVote} className="flex flex-col place-items-baseline">
       <h1 className="text-xl mb-2">Add a Vote</h1>
       <label htmlFor="fieldBeer">Beer:</label>
-      <select name="beer" id="fieldBeer">
-        {allBeers?.map((beer: Beer) => (
-          <option key={beer.id} value={beer.id}>
-            {beer.name}
-          </option>
-        ))}
-      </select>
-
+      {beerId ? (
+        <>
+          <input type="hidden" name="beer" value={beerId} />
+          <strong>{beerId}</strong>
+        </>
+      ) : (
+        <select name="beer" id="fieldBeer">
+          {allBeers?.map((beer: Beer) => (
+            <option key={beer.id} value={beer.id}>
+              {beer.name}
+            </option>
+          ))}
+        </select>
+      )}
       <fieldset>
         <legend>Points for taste (0-6):</legend>
-        <label>
-          <input name="taste" type="radio" required value={0} /> 0 points
-        </label>
-        <label>
-          <input name="taste" type="radio" required value={0.5} /> 0.5 points
-        </label>
-        <label>
-          <input name="taste" type="radio" required value={1} /> 1 points
-        </label>
-        <label>
-          <input name="taste" type="radio" required value={1.5} /> 1.5 points
-        </label>
-        <label>
-          <input name="taste" type="radio" required value={2} /> 2 points
-        </label>
-        <label>
-          <input name="taste" type="radio" required value={2.5} /> 2.5 points
-        </label>
-        <label>
-          <input name="taste" type="radio" required value={3} /> 3 points
-        </label>
-        <label>
-          <input name="taste" type="radio" required value={3.5} /> 3.5 points
-        </label>
-        <label>
-          <input name="taste" type="radio" required value={4} /> 4 points
-        </label>
-        <label>
-          <input name="taste" type="radio" required value={4.5} /> 4.5 points
-        </label>
-        <label>
-          <input name="taste" type="radio" required value={5} /> 5 points
-        </label>
-        <label>
-          <input name="taste" type="radio" required value={5.5} /> 5.5 points
-        </label>
-        <label>
-          <input name="taste" type="radio" required value={6} /> 6 points
-        </label>
+        {points.map((point) => (
+          <label key={point}>
+            <input name="taste" type="radio" required value={point} /> {point}{" "}
+            points
+          </label>
+        ))}
       </fieldset>
 
       <fieldset>
         <legend>Points for design (0-6):</legend>
-        <label>
-          <input name="design" type="radio" required value={0} /> 0 points
-        </label>
-        <label>
-          <input name="design" type="radio" required value={0.5} /> 0.5 points
-        </label>
-        <label>
-          <input name="design" type="radio" required value={1} /> 1 points
-        </label>
-        <label>
-          <input name="design" type="radio" required value={1.5} /> 1.5 points
-        </label>
-        <label>
-          <input name="design" type="radio" required value={2} /> 2 points
-        </label>
-        <label>
-          <input name="design" type="radio" required value={2.5} /> 2.5 points
-        </label>
-        <label>
-          <input name="design" type="radio" required value={3} /> 3 points
-        </label>
-        <label>
-          <input name="design" type="radio" required value={3.5} /> 3.5 points
-        </label>
-        <label>
-          <input name="design" type="radio" required value={4} /> 4 points
-        </label>
-        <label>
-          <input name="design" type="radio" required value={4.5} /> 4.5 points
-        </label>
-        <label>
-          <input name="design" type="radio" required value={5} /> 5 points
-        </label>
-        <label>
-          <input name="design" type="radio" required value={5.5} /> 5.5 points
-        </label>
-        <label>
-          <input name="design" type="radio" required value={6} /> 6 points
-        </label>
+        {points.map((point) => (
+          <label key={point}>
+            <input name="design" type="radio" required value={point} /> {point}{" "}
+            points
+          </label>
+        ))}
       </fieldset>
 
       <fieldset>

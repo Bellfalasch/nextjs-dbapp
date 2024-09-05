@@ -2,6 +2,12 @@ import { sql } from "@vercel/postgres";
 import DeleteBeer from "@/components/DeleteBeer";
 import Link from "next/link";
 
+const createQueryString = (name: string, value: string) => {
+    const params = new URLSearchParams();
+    params.set(name, value);
+    return params.toString();
+};
+
 async function Beers(): Promise<JSX.Element> {
   const { rows } =
     await sql`SELECT b.id, b.name, b.description, b.brewery, b.alcohol, b.price, COUNT(v.*) AS votes, AVG(v.points_taste) AS taste, AVG(v.points_design) AS design, AVG(v.points_bonus) AS bonus FROM beers b LEFT OUTER JOIN votes v ON v.beer_id = b.id GROUP BY b.id ORDER BY b.id`;
@@ -29,7 +35,9 @@ return (
         <tr key={row.id}>
           <td>{row.id}</td>
           <td>
-            <button>Go vote!</button>
+            <Link href={"/votes" + "?" + createQueryString("id", row.id)}>
+              Go vote
+            </Link>
           </td>
           <td>{row.name}</td>
           <td>{row.description ? row.description : "?"}</td>
