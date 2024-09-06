@@ -9,9 +9,9 @@ export async function GET(request: Request) {
         user_id INTEGER,
         event_id INTEGER,
         beer_id INTEGER,
-        points_taste INTEGER,
-        points_design INTEGER,
-        points_bonus INTEGER,
+        points_taste REAL,
+        points_design REAL,
+        points_bonus REAL,
         CONSTRAINT fk_user
           FOREIGN KEY(user_id)
           REFERENCES users (id)
