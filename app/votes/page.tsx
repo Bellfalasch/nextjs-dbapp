@@ -8,12 +8,12 @@ const submitVote = async (formData: FormData) => {
     "use server"; // This runs on the server, so console.logs here and deeper will not be in the browser console ;P
     
     const castVote = await addVote(
-        1,
-        1,
-        parseInt(formData.get("beer") as string, 10),
-        parseInt(formData.get("taste") as string, 10),
-        parseInt(formData.get("design") as string, 10),
-        parseInt(formData.get("bonus") as string, 10)
+      1,
+      1,
+      parseInt(formData.get("beer") as string, 10),
+      parseFloat(formData.get("taste") as string),
+      parseFloat(formData.get("design") as string),
+      parseFloat(formData.get("bonus") as string)
     );
     
     console.log("Added vote", castVote);
