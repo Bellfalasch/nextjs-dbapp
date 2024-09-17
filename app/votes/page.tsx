@@ -80,27 +80,12 @@ export default async function AddVote({ searchParams }: { searchParams: URLSearc
 
       <fieldset className="radios">
         <legend className="label">Points for BONUS (0-3):</legend>
-        <label>
-          <input name="bonus" type="radio" required value={0} /> 0 points
-        </label>
-        <label>
-          <input name="bonus" type="radio" required value={0.5} /> 0.5 points
-        </label>
-        <label>
-          <input name="bonus" type="radio" required value={1} /> 1 points
-        </label>
-        <label>
-          <input name="bonus" type="radio" required value={1.5} /> 1.5 points
-        </label>
-        <label>
-          <input name="bonus" type="radio" required value={2} /> 2 points
-        </label>
-        <label>
-          <input name="bonus" type="radio" required value={2.5} /> 2.5 points
-        </label>
-        <label>
-          <input name="bonus" type="radio" required value={3} /> 3 points
-        </label>
+        {points.map((point) => ( point <= 3 &&
+          <label key={point}>
+            <input name="design" type="radio" required value={point} /> {point}{" "}
+            points
+          </label>
+        ))}
       </fieldset>
 
       <div className="field is-grouped">
