@@ -34,7 +34,14 @@ export default async function AddVote({ searchParams }: { searchParams: URLSearc
   const points = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6];
 
   return (
-    <form action={submitVote} className="flex flex-col place-items-baseline">
+    <form
+      action={submitVote}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <h1 className="title">Add a Vote</h1>
       <label htmlFor="fieldBeer">Beer:</label>
       {beerId ? (
