@@ -7,6 +7,12 @@ export default function Home() {
       <h2>Done so far</h2>
       <ul>
         <li>
+          <Link href="/register">Register</Link>
+        </li>
+        <li>
+          <Link href="/login">Login</Link>
+        </li>
+        <li>
           <Link href="/events">List _all_ events</Link>
         </li>
         <li>
