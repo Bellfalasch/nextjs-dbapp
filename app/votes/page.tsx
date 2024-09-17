@@ -35,7 +35,7 @@ export default async function AddVote({ searchParams }: { searchParams: URLSearc
 
   return (
     <form action={submitVote} className="flex flex-col place-items-baseline">
-      <h1 className="text-xl mb-2">Add a Vote</h1>
+      <h1 className="title">Add a Vote</h1>
       <label htmlFor="fieldBeer">Beer:</label>
       {beerId ? (
         <>
@@ -51,8 +51,8 @@ export default async function AddVote({ searchParams }: { searchParams: URLSearc
           ))}
         </select>
       )}
-      <fieldset>
-        <legend>Points for taste (0-6):</legend>
+      <fieldset className="radios">
+        <legend className="label">Points for taste (0-6):</legend>
         {points.map((point) => (
           <label key={point}>
             <input name="taste" type="radio" required value={point} /> {point}{" "}
@@ -61,8 +61,8 @@ export default async function AddVote({ searchParams }: { searchParams: URLSearc
         ))}
       </fieldset>
 
-      <fieldset>
-        <legend>Points for design (0-6):</legend>
+      <fieldset className="radios">
+        <legend className="label">Points for design (0-6):</legend>
         {points.map((point) => (
           <label key={point}>
             <input name="design" type="radio" required value={point} /> {point}{" "}
@@ -71,8 +71,8 @@ export default async function AddVote({ searchParams }: { searchParams: URLSearc
         ))}
       </fieldset>
 
-      <fieldset>
-        <legend>Points for BONUS (0-3):</legend>
+      <fieldset className="radios">
+        <legend className="label">Points for BONUS (0-3):</legend>
         <label>
           <input name="bonus" type="radio" required value={0} /> 0 points
         </label>
@@ -96,7 +96,13 @@ export default async function AddVote({ searchParams }: { searchParams: URLSearc
         </label>
       </fieldset>
 
-      <button type="submit">Add vote</button>
+      <div className="field is-grouped">
+        <div className="control">
+          <button type="submit" className="button is-link">
+            Cast your vote
+          </button>
+        </div>
+      </div>
     </form>
   );
 }

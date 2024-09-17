@@ -13,7 +13,7 @@ async function Beers(): Promise<JSX.Element> {
     await sql`SELECT b.id, b.name, b.description, b.brewery, b.alcohol, b.price, COUNT(v.*) AS votes, AVG(v.points_taste) AS taste, AVG(v.points_design) AS design, AVG(v.points_bonus) AS bonus FROM beers b LEFT OUTER JOIN votes v ON v.beer_id = b.id GROUP BY b.id ORDER BY b.id`;
 
 return (
-  <table>
+  <table className="table">
     <thead>
       <tr>
         <th>ID</th>
@@ -67,7 +67,7 @@ return (
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <h1>Available beers</h1>
+        <h1 className="title">Available beers</h1>
         <Link href="/beers/add">Add a beer</Link>
         <Beers />
     </main>

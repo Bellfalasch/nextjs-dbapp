@@ -24,16 +24,46 @@ export default function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
-      </label>
-      <label>
-        Password:
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-      </label>
-      <button type="submit">Login</button>
+    <form
+      onSubmit={handleSubmit}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <h1 className="title">Login</h1>
+      <div className="field">
+        <label className="label">
+          Username:
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            className="input"
+          />
+        </label>
+      </div>
+      <div className="field">
+        <label className="label">
+          Password:
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="input"
+          />
+        </label>
+      </div>
+      <div className="field is-grouped">
+        <div className="control">
+          <button type="submit" className="button is-link">
+            Login
+          </button>
+        </div>
+      </div>
     </form>
   );
 }

@@ -14,7 +14,7 @@ export default function deleteThing({ beerId }: DeleteThing) {
 
   return (
     <form>
-      <button formAction={deleteThing} className="m-8">
+      <button formAction={deleteThing} className="button is-small is-danger">
         Delete
       </button>
     </form>
