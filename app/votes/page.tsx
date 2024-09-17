@@ -43,21 +43,28 @@ export default async function AddVote({ searchParams }: { searchParams: URLSearc
       }}
     >
       <h1 className="title">Add a Vote</h1>
-      <label htmlFor="fieldBeer">Beer:</label>
-      {beerId ? (
-        <>
-          <input type="hidden" name="beer" value={beerId} />
-          <strong>{beerId}</strong>
-        </>
-      ) : (
-        <select name="beer" id="fieldBeer">
-          {allBeers?.map((beer: Beer) => (
-            <option key={beer.id} value={beer.id}>
-              {beer.name}
-            </option>
-          ))}
-        </select>
-      )}
+      <div className="field">
+        <label htmlFor="fieldBeer" className="label">
+          Beer:
+        </label>
+        {beerId ? (
+          <>
+            <input type="hidden" name="beer" value={beerId} />
+            <strong>{beerId}</strong>
+          </>
+        ) : (
+          <div className="select">
+            <select name="beer" id="fieldBeer">
+              {allBeers?.map((beer: Beer) => (
+                <option key={beer.id} value={beer.id}>
+                  {beer.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+      </div>
+
       <fieldset className="radios">
         <legend className="label">Points for taste (0-6):</legend>
         {points.map((point) => (
@@ -80,12 +87,15 @@ export default async function AddVote({ searchParams }: { searchParams: URLSearc
 
       <fieldset className="radios">
         <legend className="label">Points for BONUS (0-3):</legend>
-        {points.map((point) => ( point <= 3 &&
-          <label key={point}>
-            <input name="design" type="radio" required value={point} /> {point}{" "}
-            points
-          </label>
-        ))}
+        {points.map(
+          (point) =>
+            point <= 3 && (
+              <label key={point}>
+                <input name="design" type="radio" required value={point} />{" "}
+                {point} points
+              </label>
+            )
+        )}
       </fieldset>
 
       <div className="field is-grouped">
