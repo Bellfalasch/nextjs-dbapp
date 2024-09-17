@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import addVote from "@/db/votes/vote";
 import listBeers from "@/db/beers/get-all";
 import { Beer } from "@/types";
+import Link from "next/link";
 
 const submitVote = async (formData: FormData) => {
     "use server"; // This runs on the server, so console.logs here and deeper will not be in the browser console ;P
@@ -103,6 +104,11 @@ export default async function AddVote({ searchParams }: { searchParams: URLSearc
           <button type="submit" className="button is-link">
             Cast your vote
           </button>
+        </div>
+        <div className="control">
+          <Link href="/" className="button is-link is-light">
+            Cancel
+          </Link>
         </div>
       </div>
     </form>

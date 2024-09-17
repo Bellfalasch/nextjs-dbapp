@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import Link from "next/link";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -25,36 +26,55 @@ export default function Register() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Register user</h1>
-      <label>
+    <form
+      onSubmit={handleSubmit}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <h1 className="title">Register user</h1>
+      <label className="label">
         Username:
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
+          className="input"
         />
       </label>
-      <label>
+      <label className="label">
         Password:
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          className="input"
         />
       </label>
-      <label>
+      <label className="label">
         Full Name:
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
+          className="input"
         />
       </label>
-      <button type="submit">Register</button>
+      <div className="field is-grouped">
+        <div className="control">
+          <button type="submit" className="button is-link">
+            Register
+          </button>
+        </div>
+        <div className="control">
+          <Link href="/" className="button is-link is-light">Cancel</Link>
+        </div>
+      </div>
     </form>
   );
 }

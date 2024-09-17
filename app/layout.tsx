@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,54 @@ export default function RootLayout({
     href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
   ></link>
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+
+        <nav className="navbar dark" role="navigation" aria-label="main navigation">
+          <div className="navbar-brand">
+            <a className="navbar-item" href="/">
+              X-mas Beer App
+            </a>
+            <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+
+          <div id="navbarBasicExample" className="navbar-menu">
+            <div className="navbar-start">
+              <Link href="/events" className="navbar-item">
+                List Events
+              </Link>
+              <Link href="/beers" className="navbar-item">
+                List Beers
+              </Link>
+              <Link href="/beers/add" className="navbar-item">
+                Add beer
+              </Link>
+              <Link href="/votes" className="navbar-item">
+                Vote
+              </Link>
+            </div>
+
+            <div className="navbar-end">
+              <div className="navbar-item">
+                <div className="buttons">
+                  <Link href="/register" className="button is-primary">
+                    <strong>Sign up</strong>
+                  </Link>
+                  <Link href="/login" className="button is-light">
+                    Log in
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        {children}
+      </body>
     </html>
   );
 }

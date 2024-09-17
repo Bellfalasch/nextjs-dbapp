@@ -8,19 +8,19 @@ async function Events({
   const { rows } = await sql`SELECT * FROM events ORDER BY id`; //WHERE user_id = ${params.user}`;
 
   return (
-    <div>
+    <ul>
       {rows.map((row) => (
-        <div key={row.id}>
+        <li key={row.id}>
           {row.id} - {row.name} - {row.description}
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Available events</h1>
+    <main className="content">
+      <h1 className="title">Available events</h1>
       <Events params={{ user: "test" }} />
     </main>
   );

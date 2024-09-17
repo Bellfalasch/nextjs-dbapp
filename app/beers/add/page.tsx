@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import createBeer from "@/db/beers/add-one";
 import React from "react";
+import Link from "next/link";
 
 const addBeer = async (formData: FormData) => {
   "use server"; // This runs on the server, so console.logs here and deeper will not be in the browser console ;P
@@ -22,11 +23,14 @@ const addBeer = async (formData: FormData) => {
 
 export default function AddBeer() {
   return (
-    <form action={addBeer} style={{
-      display: "flex", 
-      flexDirection: "column", 
-      alignItems: "center"
-    }}>
+    <form
+      action={addBeer}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <h1 className="title">Add a New Beer</h1>
       <div className="field">
         <label className="label">
@@ -60,10 +64,14 @@ export default function AddBeer() {
       </div>
       <div className="field is-grouped">
         <div className="control">
-          <button type="submit" className="button is-link">Add beer</button>
+          <button type="submit" className="button is-link">
+            Add beer
+          </button>
         </div>
         <div className="control">
-          <button className="button is-link is-light">Cancel</button>
+          <Link href="/" className="button is-link is-light">
+            Cancel
+          </Link>
         </div>
       </div>
     </form>
