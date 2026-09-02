@@ -1,4 +1,4 @@
-import { sql } from "@vercel/postgres";
+import { legacySql as sql } from "@/db/legacy";
 
 const deleteBeer = async (beerId: number): Promise<boolean> => {
   try {

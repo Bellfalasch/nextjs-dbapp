@@ -1,5 +1,5 @@
-import { sql } from "@vercel/postgres";
-import bcrypt from "bcrypt";
+import { legacySql as sql } from "@/db/legacy";
+import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {

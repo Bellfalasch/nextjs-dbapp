@@ -1,5 +1,5 @@
 import { Beer } from "@/types";
-import { sql } from "@vercel/postgres";
+import { legacySql as sql } from "@/db/legacy";
 
 const listBeers = async () => {
       try {

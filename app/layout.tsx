@@ -28,9 +28,9 @@ export default function RootLayout({
 
         <nav className="navbar dark" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
-            <a className="navbar-item" href="/">
+            <Link className="navbar-item" href="/">
               X-mas Beer App
-            </a>
+            </Link>
             <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>

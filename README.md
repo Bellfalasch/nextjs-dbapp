@@ -1,24 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# X-mas Beer App
+
+A private, organizer-led Christmas beer tasting app built with Next.js.
 
 ## Getting Started
 
-First, run the development server:
+Install [Bun 1.4 or newer](https://bun.sh/) and restore the locked dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun install --frozen-lockfile
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create `.env.local` from `.env.example`, then start the development server:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cp .env.example .env.local
+bun run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Open [http://localhost:3000](http://localhost:3000).
+
+## Database Setup
+
+The beer, event, and voting pages require a PostgreSQL connection string in
+`.env.local`:
+
+```dotenv
+DATABASE_URL=postgresql://user:password@host/database?sslmode=require
+```
+
+If the database is managed through an existing Vercel project, link the local
+workspace and pull its development variables instead of entering the connection
+string manually:
+
+```bash
+bunx vercel link
+bunx vercel env pull .env.local
+```
+
+Restart `bun run dev` after changing environment variables. Legacy SQL pages
+also accept `POSTGRES_URL` during the migration to the new data layer.
+
+## Commands
+
+```bash
+bun run build
+bun run lint
+bun run typecheck
+bun run test
+bun run test:e2e
+bun run db:generate
+bun run db:migrate
+bun run db:studio
+```
+
+Use `bun add <package>` or `bun add --dev <package>` when changing dependencies, and commit the resulting `bun.lock` update.
 
 ## Learn More
 
@@ -29,8 +64,8 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The app targets [Vercel](https://vercel.com/). Vercel detects `bun.lock` and uses Bun to install dependencies while Next.js routes continue to run on the supported Node.js runtime.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Configure the variables documented in `.env.example` before deploying.

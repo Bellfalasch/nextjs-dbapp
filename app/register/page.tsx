@@ -1,25 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function Register() {
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const response = await fetch("/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ username, name, password }),
     });
 
     if (response.ok) {
-      redirect(`/login`);
+      router.push("/login");
     } else {
       alert("Registration failed");
     }

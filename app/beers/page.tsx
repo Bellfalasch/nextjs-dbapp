@@ -1,6 +1,9 @@
-import { sql } from "@vercel/postgres";
+import { hasDatabaseConnectionString, legacySql as sql } from "@/db/legacy";
 import DeleteBeer from "@/components/DeleteBeer";
+import DatabaseSetupNotice from "@/components/DatabaseSetupNotice";
 import Link from "next/link";
+
+export const dynamic = "force-dynamic";
 
 const createQueryString = (name: string, value: string) => {
     const params = new URLSearchParams();
@@ -8,7 +11,11 @@ const createQueryString = (name: string, value: string) => {
     return params.toString();
 };
 
-async function Beers(): Promise<JSX.Element> {
+async function Beers() {
+  if (!hasDatabaseConnectionString()) {
+    return <DatabaseSetupNotice />;
+  }
+
   const { rows } =
     await sql`SELECT b.id, b.name, b.description, b.brewery, b.alcohol, b.price, COUNT(v.*) AS votes, AVG(v.points_taste) AS taste, AVG(v.points_design) AS design, AVG(v.points_bonus) AS bonus FROM beers b LEFT OUTER JOIN votes v ON v.beer_id = b.id GROUP BY b.id ORDER BY b.id`;
 

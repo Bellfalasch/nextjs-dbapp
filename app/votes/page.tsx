@@ -5,6 +5,8 @@ import listBeers from "@/db/beers/get-all";
 import { Beer } from "@/types";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 const submitVote = async (formData: FormData) => {
     "use server"; // This runs on the server, so console.logs here and deeper will not be in the browser console ;P
     
@@ -28,10 +30,13 @@ async function getAllBeers() {
   return !beers ? [] : beers;
 }
 
-export default async function AddVote({ searchParams }: { searchParams: URLSearchParams }) {
+export default async function AddVote({
+  searchParams,
+}: {
+  searchParams: Promise<{ id?: string }>;
+}) {
   const allBeers = await getAllBeers();
-  // @ts-ignore
-  const beerId = searchParams.id;
+  const { id: beerId } = await searchParams;
   const points = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6];
 
   return (
