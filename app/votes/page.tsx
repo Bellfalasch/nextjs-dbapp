@@ -42,16 +42,12 @@ export default async function AddVote({
   return (
     <form
       action={submitVote}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
+      className="form-panel vote-panel"
     >
-      <h1 className="title">Add a Vote</h1>
+      <div className="form-heading"><p className="eyebrow">Trust your palate</p><h1 className="title">Score this beer</h1><p>Choose a score for every category, then make it official.</p></div>
       <div className="field">
         <label htmlFor="fieldBeer" className="label">
-          Beer:
+          Beer
         </label>
         {beerId ? (
           <>
@@ -72,7 +68,7 @@ export default async function AddVote({
       </div>
 
       <fieldset className="radios">
-        <legend className="label">Points for taste (0-6):</legend>
+        <legend className="label">Taste <span>0–6 points</span></legend>
         {points.map((point) => (
           <label key={point}>
             <input name="taste" type="radio" required value={point} /> {point}{" "}
@@ -82,7 +78,7 @@ export default async function AddVote({
       </fieldset>
 
       <fieldset className="radios">
-        <legend className="label">Points for design (0-6):</legend>
+        <legend className="label">Design <span>0–6 points</span></legend>
         {points.map((point) => (
           <label key={point}>
             <input name="design" type="radio" required value={point} /> {point}{" "}
@@ -92,12 +88,12 @@ export default async function AddVote({
       </fieldset>
 
       <fieldset className="radios">
-        <legend className="label">Points for BONUS (0-3):</legend>
+        <legend className="label">Festive bonus <span>0–3 points</span></legend>
         {points.map(
           (point) =>
             point <= 3 && (
               <label key={point}>
-                <input name="design" type="radio" required value={point} />{" "}
+                <input name="bonus" type="radio" required value={point} />{" "}
                 {point} points
               </label>
             )

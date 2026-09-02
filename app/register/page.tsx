@@ -28,15 +28,11 @@ export default function Register() {
   return (
     <form
       onSubmit={handleSubmit}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
+      className="form-panel auth-panel"
     >
-      <h1 className="title">Register user</h1>
+      <div className="form-heading"><p className="eyebrow">Pull up a chair</p><h1 className="title">Join the club</h1><p>Create your taster profile for the next event.</p></div>
       <label className="label">
-        Username:
+        Username
         <input
           type="text"
           value={username}
@@ -46,7 +42,7 @@ export default function Register() {
         />
       </label>
       <label className="label">
-        Password:
+        Password
         <input
           type="password"
           value={password}
@@ -56,7 +52,7 @@ export default function Register() {
         />
       </label>
       <label className="label">
-        Full Name:
+        Full name
         <input
           type="text"
           value={name}

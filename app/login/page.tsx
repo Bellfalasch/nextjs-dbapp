@@ -26,16 +26,12 @@ export default function Login() {
   return (
     <form
       onSubmit={handleSubmit}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
+      className="form-panel auth-panel"
     >
-      <h1 className="title">Login</h1>
+      <div className="form-heading"><p className="eyebrow">Welcome back</p><h1 className="title">Log in</h1><p>Your tasting table is waiting.</p></div>
       <div className="field">
         <label className="label">
-          Username:
+          Username
           <input
             type="text"
             value={username}
@@ -47,7 +43,7 @@ export default function Login() {
       </div>
       <div className="field">
         <label className="label">
-          Password:
+          Password
           <input
             type="password"
             value={password}

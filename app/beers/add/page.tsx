@@ -25,40 +25,36 @@ export default function AddBeer() {
   return (
     <form
       action={addBeer}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
+      className="form-panel"
     >
-      <h1 className="title">Add a New Beer</h1>
+      <div className="form-heading"><p className="eyebrow">A new contender</p><h1 className="title">Add a beer</h1><p>Tell the table what you brought tonight.</p></div>
       <div className="field">
         <label className="label">
-          Name (required):
-          <input name="name" type="text" required className="input" />
+          Beer name
+          <input name="name" type="text" required className="input" placeholder="e.g. St. Hallvard Reserve" />
         </label>
       </div>
       <div className="field">
         <label className="label">
-          Description:
+          Description
           <input name="description" type="text" className="input" />
         </label>
       </div>
       <div className="field">
         <label className="label">
-          Brewery:
+          Brewery
           <input name="brewery" type="text" className="input" />
         </label>
       </div>
       <div className="field">
         <label className="label">
-          Alcohol:
+          Alcohol %
           <input name="alcohol" type="text" className="input" />
         </label>
       </div>
       <div className="field">
         <label className="label">
-          Price:
+          Price (NOK)
           <input name="price" type="text" className="input" />
         </label>
       </div>

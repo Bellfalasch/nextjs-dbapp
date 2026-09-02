@@ -11,10 +11,11 @@ async function Events() {
   const { rows } = await sql`SELECT * FROM events ORDER BY id`;
 
   return (
-    <ul>
+    <ul className="event-list">
       {rows.map((row) => (
         <li key={row.id}>
-          {row.id} - {row.name} - {row.description}
+          <span className="event-number">{String(row.id).padStart(2, "0")}</span>
+          <span><strong>{row.name}</strong><small>{row.description}</small></span>
         </li>
       ))}
     </ul>
@@ -22,8 +23,8 @@ async function Events() {
 }
 export default function Home() {
   return (
-    <main className="content">
-      <h1 className="title">Available events</h1>
+    <main className="page-shell">
+      <div className="page-heading"><div><p className="eyebrow">Gather around</p><h1 className="title">Tasting events</h1></div></div>
       <Events />
     </main>
   );

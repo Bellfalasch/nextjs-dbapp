@@ -20,6 +20,7 @@ async function Beers() {
     await sql`SELECT b.id, b.name, b.description, b.brewery, b.alcohol, b.price, COUNT(v.*) AS votes, AVG(v.points_taste) AS taste, AVG(v.points_design) AS design, AVG(v.points_bonus) AS bonus FROM beers b LEFT OUTER JOIN votes v ON v.beer_id = b.id GROUP BY b.id ORDER BY b.id`;
 
 return (
+  <div className="table-wrap">
   <table className="table">
     <thead>
       <tr>
@@ -68,14 +69,17 @@ return (
       ))}
     </tbody>
   </table>
+  </div>
 );
 }
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <h1 className="title">Available beers</h1>
-        <Link href="/beers/add">Add a beer</Link>
+    <main className="page-shell">
+        <div className="page-heading">
+          <div><p className="eyebrow">The contenders</p><h1 className="title">Beer lineup</h1></div>
+          <Link href="/beers/add" className="button is-link">Add a beer</Link>
+        </div>
         <Beers />
     </main>
   );
